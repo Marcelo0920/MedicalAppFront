@@ -1,0 +1,117 @@
+/* Variables de colores */
+:root {
+  --dark-blue: #001b6e; /* Azul oscuro */
+  --white: #ffffff;     /* Blanco */
+  --light-blue: #e8f0fe; /* Azul claro */
+  --black: #000000;     /* Negro */
+  --button-blue: #002cc5; /* Azul de los botones */
+  --hover-blue: #0033f9; /* Azul más claro para hover */
+}
+
+/* Estilos globales */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--light-blue); /* Fondo general del sitio */
+  color: var(--black);
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  width: 90%;
+  max-width: 1200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Formulario de Login y Register */
+.form-container {
+  width: 50%;
+  background: var(--white); /* Fondo blanco para el formulario */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Ilustración */
+.illustration {
+  width: 50%;
+  background: var(--dark-blue); /* Fondo azul oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.illustration img {
+  max-width: 80%; /* Tamaño responsivo de la imagen */
+}
+
+/* Estilos del formulario */
+h2 {
+  color: var(--dark-blue); /* Título en azul oscuro */
+  margin-bottom: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--light-blue); /* Borde azul claro */
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  background: var(--button-blue); /* Azul del botón */
+  color: var(--white); /* Texto blanco */
+  padding: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: var(--hover-blue); /* Azul más claro en hover */
+}
+
+p {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--dark-blue); /* Enlaces en azul oscuro */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+p:hover {
+  color: var(--hover-blue); /* Cambiar color al pasar el cursor */
+}
+
+/* Estilo de botones sociales (si es necesario añadirlos) */
+.social-login button {
+  background: none;
+  border: 1px solid var(--light-blue);
+  color: var(--dark-blue);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.social-login button:hover {
+  background: var(--light-blue);
+}
