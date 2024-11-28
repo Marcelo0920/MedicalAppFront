@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 import RevisionCard from "../components/Patient/RevisionCard/RevisionCardList";
 import HistoricClinicCardsList from "../components/Patient/HistoricClinic/HistoricClinicCardsList/HistoricClinicCardsList";
+
 import "./styles/PatientProfile.css";
 
 const PatientProfile = () => {
