@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./styles/revision.css";
+import "@pages/styles/revision.css";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 import PatientSelectionModal from "../components/Modals/PatientSelectionModal/PatientSelectionModal";

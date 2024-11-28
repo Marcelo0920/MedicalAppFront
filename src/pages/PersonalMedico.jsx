@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import "./styles/home.css";
+import "@pages/styles/home.css";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 import DoctorsList from "../components/Doctors/DoctorsList/DoctorsList";
