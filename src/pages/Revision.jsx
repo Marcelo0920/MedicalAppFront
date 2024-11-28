@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { setPaciente } from "../actions/paciente";
 
-import "./styles/revision.css";
+import "./Styles/revision.css";
 
 const Loader = () => (
   <div className="loader-overlay">

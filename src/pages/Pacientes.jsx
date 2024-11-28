@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { loginDefault } from "../actions/auth";
 import { defaultPaciente } from "../actions/paciente";
 
-import "./styles/home.css";
+import "./Styles/home.css";
 
 const Pacientes = ({
   loginDefault,

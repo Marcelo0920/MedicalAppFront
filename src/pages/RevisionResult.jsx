@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { iaDefault } from "../actions/ia";
 
-import "./styles/revisionResult.css";
+import "./Styles/revisionResult.css";
 
 const ImageModal = ({ isOpen, onClose, image, isBase64 }) => {
   if (!isOpen) return null;
