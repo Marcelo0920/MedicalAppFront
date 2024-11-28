@@ -30,7 +30,10 @@ export const loadUser = () => async (dispatch) => {
       },
     };
 
-    const res = await axios.get("http://localhost:3000/api/auth/renew", config);
+    const res = await axios.get(
+      "http://3.143.242.114:3000/api/auth/renew",
+      config
+    );
 
     console.log("Respuesta de renovación:", res.data);
 
@@ -74,7 +77,7 @@ export const login = (email, password) => async (dispatch) => {
     const body = JSON.stringify({ email, password });
 
     const res = await axios.post(
-      "http://localhost:3000/api/auth/login",
+      "http://3.143.242.114:3000/api/auth/login",
       body,
       config
     );

@@ -20,7 +20,10 @@ export const getPacientes = () => async (dispatch) => {
       },
     };
 
-    const res = await axios.get("http://localhost:3000/api/pacientes", config);
+    const res = await axios.get(
+      "http://3.143.242.114:3000/api/pacientes",
+      config
+    );
 
     dispatch({
       type: GET_PACIENTES,
@@ -33,11 +36,26 @@ export const getPacientes = () => async (dispatch) => {
   }
 };
 
-export const getPaciente = () => async (dispatch) => {
+export const getPaciente = (id) => async (dispatch) => {
   try {
-    console.log("getting one paciente");
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": token,
+      },
+    };
+
+    const res = await axios.get(
+      `http://3.143.242.114:3000/api/pacientes/${id}`,
+      config
+    );
+
+    console.log(res.data);
+
     dispatch({
       type: GET_PACIENTE,
+      payload: res.data,
     });
   } catch (error) {
     dispatch({
@@ -57,7 +75,7 @@ export const updatePaciente = (formData, id) => async (dispatch) => {
     };
 
     const res = await axios.put(
-      `http://localhost:3000/api/pacientes/${id}`,
+      `http://3.143.242.114:3000/api/pacientes/${id}`,
       formData,
       config
     );
@@ -86,10 +104,12 @@ export const postPaciente = (formData) => async (dispatch) => {
     };
 
     const res = await axios.post(
-      "http://localhost:3000/api/pacientes",
+      "http://3.143.242.114:3000/api/pacientes",
       formData,
       config
     );
+
+    console.log(res.data);
 
     dispatch({
       type: POST_PACIENTE,

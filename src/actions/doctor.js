@@ -21,7 +21,10 @@ export const getDoctores = () => async (dispatch) => {
       },
     };
 
-    const res = await axios.get("http://localhost:3000/api/medicos", config);
+    const res = await axios.get(
+      "http://3.143.242.114:3000/api/medicos",
+      config
+    );
 
     dispatch({
       type: GET_DOCTORES,
@@ -59,7 +62,7 @@ export const updateDoctor = (formData, id) => async (dispatch) => {
     };
 
     const res = await axios.put(
-      `http://localhost:3000/api/medicos/${id}`,
+      `http://3.143.242.114:3000/api/medicos/${id}`,
       formData,
       config
     );
@@ -89,7 +92,7 @@ export const postDoctor = (formData) => async (dispatch) => {
     };
 
     const res = await axios.post(
-      "http://localhost:3000/api/medicos",
+      "http://3.143.242.114:3000/api/medicos",
       formData,
       config
     );

@@ -1,18 +1,17 @@
-// pacienteReducer.js
+// consultaReducer.js
 import {
-  GET_PACIENTE,
-  GET_PACIENTES,
-  POST_PACIENTE,
-  DELETE_PACIENTE,
-  ERROR_PACIENTE,
-  UPDATE_PACIENTE,
-  DEFAULT_PACIENTE,
-  SELECT_PACIENTE,
+  GET_CONSULTA,
+  GET_CONSULTAS,
+  POST_CONSULTA,
+  DELETE_CONSULTA,
+  ERROR_CONSULTA,
+  UPDATE_CONSULTA,
+  START_CONSULTA,
 } from "../actions/types";
 
 const initialState = {
-  pacientes: [],
-  paciente: null,
+  consultas: [],
+  consulta: null,
   loading: false,
   creationSuccess: false,
   msg: "",
@@ -23,64 +22,61 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_PACIENTES:
+    case GET_CONSULTAS:
       return {
         ...state,
-        pacientes: payload,
+        consultas: payload,
         loading: false,
       };
 
-    case SELECT_PACIENTE:
+    case GET_CONSULTA:
       return {
         ...state,
-        paciente: payload,
-      };
-
-    case GET_PACIENTE:
-      return {
-        ...state,
-        paciente: payload,
+        consulta: payload,
         loading: false,
       };
 
-    case DEFAULT_PACIENTE:
+    case START_CONSULTA:
       return {
         ...state,
-        loading: false,
+        loading: true,
         creationSuccess: false,
-        msg: "",
       };
 
-    case POST_PACIENTE:
+    case POST_CONSULTA:
       return {
         ...state,
-        pacientes: [payload.paciente, ...state.pacientes],
+        consultas: [payload, ...state.consultas],
         creationSuccess: true,
         loading: false,
       };
 
-    case DELETE_PACIENTE:
+    case DELETE_CONSULTA:
       return {
         ...state,
+        consultas: state.consultas.filter(
+          (consulta) => consulta.id !== payload
+        ),
         loading: false,
       };
 
-    case UPDATE_PACIENTE:
+    case UPDATE_CONSULTA:
       return {
         ...state,
         loading: false,
         creationSuccess: true,
         msg: payload.msg,
-        pacientes: state.pacientes.map((paciente) =>
-          paciente.id == payload.paciente.id ? payload.paciente : paciente
+        consultas: state.consultas.map((consulta) =>
+          consulta.id === payload.consulta.id ? payload.consulta : consulta
         ),
       };
 
-    case ERROR_PACIENTE:
+    case ERROR_CONSULTA:
       return {
         ...state,
         error: payload,
         loading: false,
+        creationSuccess: false,
       };
 
     default: {

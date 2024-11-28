@@ -5,6 +5,7 @@ import enfermero from "./enfermero";
 import paciente from "./paciente";
 import auth from "./auth";
 import ia from "./ia";
+import consulta from "./consulta";
 
 export default combineReducers({
   doctor,
@@ -13,4 +14,5 @@ export default combineReducers({
   enfermero,
   auth,
   ia,
+  consulta,
 });

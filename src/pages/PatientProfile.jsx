@@ -1,28 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 import RevisionCard from "../components/Patient/RevisionCard/RevisionCardList";
 import HistoricClinicCardsList from "../components/Patient/HistoricClinic/HistoricClinicCardsList/HistoricClinicCardsList";
 
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import "./Styles/patientProfile.css";
+import { getPaciente } from "../actions/paciente";
 
-const PatientProfile = () => {
+import { useParams } from "react-router-dom";
+import { getConsultas } from "../actions/consulta";
+
+const PatientProfile = ({
+  getConsultas,
+  getPaciente,
+  paciente: { paciente },
+}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("revisiones");
+  const { id } = useParams();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const patientData = {
-    nombre: "María Galindo",
-    edad: "28 años",
-    grupoSanguineo: "ORH +",
-    phoneNo: "9876543210",
-    codigoPaciente: "9876543210",
-    correo: "correo@gmail.com",
-    ci: "12533957",
-  };
+  console.log(paciente);
+
+  useEffect(() => {
+    if (id) {
+      getPaciente(id);
+    }
+  }, [id]);
 
   return (
     <div className="app">
@@ -43,33 +52,33 @@ const PatientProfile = () => {
                 <div className="patient-details">
                   <div className="detail-group">
                     <label>Nombre</label>
-                    <span>{patientData.nombre}</span>
+                    <span>{paciente?.nombre}</span>
                   </div>
                   <div className="detail-group">
                     <label>Edad</label>
-                    <span>{patientData.edad}</span>
+                    <span>{paciente?.edad}</span>
                   </div>
                   <div className="detail-group">
                     <label>Grupo Sanguíneo</label>
-                    <span>{patientData.grupoSanguineo}</span>
+                    <span>ORH +</span>
                   </div>
                   <div className="detail-group">
                     <label>Phone no :</label>
-                    <span>{patientData.phoneNo}</span>
+                    <span>{paciente?.telefono}</span>
                   </div>
                 </div>
                 <div className="patient-details secondary">
                   <div className="detail-group">
                     <label>Codigo Paciente :</label>
-                    <span>{patientData.codigoPaciente}</span>
+                    <span>{paciente?.id}</span>
                   </div>
                   <div className="detail-group">
                     <label>Correo :</label>
-                    <span>{patientData.correo}</span>
+                    <span>{paciente?.email}</span>
                   </div>
                   <div className="detail-group">
                     <label>CI :</label>
-                    <span>{patientData.ci}</span>
+                    <span>12533985</span>
                   </div>
                 </div>
               </div>
@@ -117,4 +126,16 @@ const PatientProfile = () => {
   );
 };
 
-export default PatientProfile;
+PatientProfile.propTypes = {
+  getPaciente: PropTypes.func.isRequired,
+  getConsultas: PropTypes.func.isRequired,
+  paciente: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  paciente: state.paciente,
+});
+
+export default connect(mapStateToProps, { getPaciente, getConsultas })(
+  PatientProfile
+);

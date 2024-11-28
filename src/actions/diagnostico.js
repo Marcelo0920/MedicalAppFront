@@ -10,7 +10,19 @@ import {
 
 export const getDiagnosticos = () => async (dispatch) => {
   try {
-    console.log("getting diagnosticos");
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": token,
+      },
+    };
+
+    const res = await axios.get(
+      "http://3.143.242.114:3000/api/pacientes",
+      config
+    );
+
     dispatch({
       type: GET_DIAGNOSTICOS,
     });
@@ -23,7 +35,19 @@ export const getDiagnosticos = () => async (dispatch) => {
 
 export const getDiagnostico = () => async (dispatch) => {
   try {
-    console.log("getting one diagnostico");
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": token,
+      },
+    };
+
+    const res = await axios.get(
+      "http://3.143.242.114:3000/api/pacientes",
+      config
+    );
+
     dispatch({
       type: GET_DIAGNOSTICO,
     });
@@ -49,12 +73,25 @@ export const updateDiagnostico = () => async (dispatch) => {
 
 export const postDiagnostico = (formData) => async (dispatch) => {
   try {
-    console.log("posting diagnostico");
+    console.log(formData);
 
-    dispatch({
-      type: START_DIAGNOSTICO,
-      payload: formData,
-    });
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": token,
+      },
+    };
+
+    console.log("que pasa acaaaa");
+
+    const res = await axios.post(
+      "http://3.143.242.114:3000/api/diagnosticos-ia",
+      config,
+      formData
+    );
+
+    console.log(res.data);
 
     dispatch({
       type: POST_DIAGNOSTICO,
@@ -68,7 +105,19 @@ export const postDiagnostico = (formData) => async (dispatch) => {
 
 export const deleteDiagnostico = () => async (dispatch) => {
   try {
-    console.log("deleting diagnostico");
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": token,
+      },
+    };
+
+    const res = await axios.get(
+      "http://3.143.242.114:3000/api/pacientes",
+      config
+    );
+
     dispatch({
       type: DELETE_DIAGNOSTICO,
     });

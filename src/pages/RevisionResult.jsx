@@ -10,6 +10,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { iaDefault } from "../actions/ia";
 
 import "./Styles/revisionResult.css";
+import { postDiagnostico } from "../actions/diagnostico";
+import { convertToBase64 } from "../utils/convertImage";
 
 const ImageModal = ({ isOpen, onClose, image, isBase64 }) => {
   if (!isOpen) return null;
@@ -41,6 +43,7 @@ const RevisionResult = ({
   ia: { currentImage, iaSuccess, diagnostico, resultImage },
   paciente: { paciente },
   iaDefault,
+  postDiagnostico,
 }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,6 +74,37 @@ const RevisionResult = ({
     iaDefault();
   }, [iaSuccess]);
 
+  const handleSave = async () => {
+    console.log(currentImage);
+    try {
+      // Crear el nuevo registro
+      const newRecord = {
+        id_paciente: paciente.id,
+        diagnostico_ia: diagnostico,
+        imagen_original: await convertToBase64(currentImage),
+        imagen_analizada: resultImage,
+        fecha: new Date().toISOString(),
+        nombre_paciente: paciente.nombre,
+      };
+
+      // Obtener registros existentes del localStorage o inicializar array vacío
+      const existingRecords = JSON.parse(
+        localStorage.getItem("diagnosticos") || "[]"
+      );
+
+      // Agregar el nuevo registro
+      existingRecords.push(newRecord);
+
+      // Guardar el array actualizado en localStorage
+      localStorage.setItem("diagnosticos", JSON.stringify(existingRecords));
+
+      toast.success("Diagnóstico guardado exitosamente");
+    } catch (error) {
+      console.error("Error al guardar el diagnóstico:", error);
+      toast.error("Error al guardar el diagnóstico");
+    }
+  };
+
   return (
     <>
       <ToastContainer />
@@ -88,7 +122,7 @@ const RevisionResult = ({
           <div className="revision-result-container">
             <div className="page-header">
               <h1>Resultados</h1>
-              <button className="save-button">
+              <button className="save-button" onClick={handleSave}>
                 <span className="check-icon">✓</span>
                 Guardar
               </button>
@@ -115,8 +149,8 @@ const RevisionResult = ({
 
                   <div className="info-sidebar">
                     <div className="info-item">
-                      <span className="info-label">Código</span>
-                      <span className="info-value">{paciente.id}</span>
+                      <span className="info-label">Código Paciente</span>
+                      <span className="info-value">{paciente?.id}</span>
                     </div>
                     <div className="info-item">
                       <span className="info-label">Fecha</span>
@@ -124,7 +158,7 @@ const RevisionResult = ({
                     </div>
                     <div className="info-item">
                       <span className="info-label">Paciente</span>
-                      <span className="info-value">{paciente.nombre}</span>
+                      <span className="info-value">{paciente?.nombre}</span>
                     </div>
                   </div>
                 </div>
@@ -163,8 +197,11 @@ const mapStateToProps = (state) => ({
 
 RevisionResult.propTypes = {
   iaDefault: PropTypes.func.isRequired,
+  postDiagnostico: PropTypes.func.isRequired,
   ia: PropTypes.object.isRequired,
   paciente: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, { iaDefault })(RevisionResult);
+export default connect(mapStateToProps, { iaDefault, postDiagnostico })(
+  RevisionResult
+);

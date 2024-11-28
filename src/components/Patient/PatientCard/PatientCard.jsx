@@ -7,6 +7,8 @@ import CreatePatientModal from "../../Modals/CreatePatientModal/CreatePatientMod
 const PatientCard = ({ patient }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  console.log(patient);
+
   return (
     <>
       <div className="patient-card">
@@ -19,7 +21,7 @@ const PatientCard = ({ patient }) => {
             ✏️
           </button>
         </div>
-        <Link to="/patientprofile" className="patient-info">
+        <Link to={`/patientprofile/${patient.id}`} className="patient-info">
           <div className="info-row">
             <span className="label">Grupo Sanguineo:</span>
             <span>ORH+</span>
