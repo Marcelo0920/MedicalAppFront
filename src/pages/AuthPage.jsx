@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Navigate } from "react-router-dom";
 
-import "@pages/styles/authPage.css";
+import "./styles/authPage.css";
 
 const AuthPage = ({ login, isAuthenticated, loading, error }) => {
   const [isLoginMode, setIsLoginMode] = useState(true);

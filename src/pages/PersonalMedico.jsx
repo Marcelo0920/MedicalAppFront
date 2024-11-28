@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { defaultDoctor } from "../actions/doctor";
 
-import "@pages/styles/home.css";
+import "./styles/home.css";
 
 const PersonalMedico = ({
   defaultDoctor,
