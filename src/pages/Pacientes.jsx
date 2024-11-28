@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import "@pages/styles/home.css";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 import PatientList from "../components/Patient/PatientList/PatientList";
@@ -11,6 +10,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginDefault } from "../actions/auth";
 import { defaultPaciente } from "../actions/paciente";
+
+import "./styles/home.css";
 
 const Pacientes = ({
   loginDefault,

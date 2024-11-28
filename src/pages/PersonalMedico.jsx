@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import "@pages/styles/home.css";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 import DoctorsList from "../components/Doctors/DoctorsList/DoctorsList";
@@ -10,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { defaultDoctor } from "../actions/doctor";
+
+import "@pages/styles/home.css";
 
 const PersonalMedico = ({
   defaultDoctor,

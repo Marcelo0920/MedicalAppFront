@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import "@pages/styles/revisionResult.css";
+
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { iaDefault } from "../actions/ia";
+
+import "@pages/styles/revisionResult.css";
 
 const ImageModal = ({ isOpen, onClose, image, isBase64 }) => {
   if (!isOpen) return null;

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "@pages/styles/revision.css";
+
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 import PatientSelectionModal from "../components/Modals/PatientSelectionModal/PatientSelectionModal";
@@ -11,6 +11,8 @@ import { iaAnalisis, iaLoading } from "../actions/ia";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { setPaciente } from "../actions/paciente";
+
+import "@pages/styles/revision.css";
 
 const Loader = () => (
   <div className="loader-overlay">
