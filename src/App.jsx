@@ -13,6 +13,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 import ProtectedRoute from "./security/ProtectedRoute";
 import store from "./store";
+import NotFound from "./pages/NotFound";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -77,6 +78,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
