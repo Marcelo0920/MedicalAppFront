@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import "@pages/styles/revisionResult.css";
+import "./styles/revisionResult.css";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 
