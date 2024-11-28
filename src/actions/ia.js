@@ -48,8 +48,6 @@ export const iaAnalisis = (file) => async (dispatch) => {
       config
     );
 
-    console.log(res.data);
-
     dispatch({
       type: IA_SUCCESS,
       payload: res.data,

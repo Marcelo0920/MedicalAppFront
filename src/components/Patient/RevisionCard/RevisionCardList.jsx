@@ -1,7 +1,7 @@
 import React from "react";
 import RevisionCard from "./RevisionCard";
 
-const RevisionCardList = () => {
+const RevisionCardList = ({ diagnosticos }) => {
   const revisions = [
     {
       type: "Radiografía Torax",
@@ -40,10 +40,12 @@ const RevisionCardList = () => {
     },
   ];
 
+  console.log(diagnosticos);
+
   return (
     <div className="revisions-grid">
-      {revisions.map((revision, index) => (
-        <RevisionCard revision={revision} key={index} />
+      {diagnosticos.map((revision, index) => (
+        <RevisionCard revision={revision} key={index} cod={index} />
       ))}
     </div>
   );

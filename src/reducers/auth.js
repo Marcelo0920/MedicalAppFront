@@ -10,9 +10,9 @@ import {
 
 const initialState = {
   token: localStorage.getItem("token"),
+  usuario: null,
   isAuthenticated: false,
   loading: false,
-  user: null,
   error: null,
   message: null,
   loginSuccess: false,
@@ -31,21 +31,22 @@ export default function authReducer(state = initialState, action) {
       };
 
     case USER_LOADED:
+      console.log("User Loaded Payload:", payload); // Agregar este log
       return {
         ...state,
         isAuthenticated: true,
         loading: false,
-        user: payload.usuario,
+        usuario: payload.user,
         token: payload.token,
         error: null,
       };
 
     case LOGIN_SUCCESS:
-      console.log(payload);
+      console.log("Login Success Payload:", payload); // Agregar este log
       return {
         ...state,
         token: payload.token,
-        user: payload.user,
+        usuario: payload.user,
         message: payload.msg,
         isAuthenticated: true,
         loginSuccess: true,
@@ -67,7 +68,7 @@ export default function authReducer(state = initialState, action) {
         token: null,
         isAuthenticated: false,
         loading: false,
-        user: null,
+        usuario: null,
         error: "Error de autenticación",
         message: null,
       };
@@ -78,7 +79,7 @@ export default function authReducer(state = initialState, action) {
         token: null,
         isAuthenticated: false,
         loading: false,
-        user: null,
+        usuario: null,
         error: "Bad Login",
         message: null,
       };
@@ -89,7 +90,7 @@ export default function authReducer(state = initialState, action) {
         token: null,
         isAuthenticated: false,
         loading: false,
-        user: null,
+        usuario: null,
         error: null,
         message: "Sesión cerrada correctamente",
       };

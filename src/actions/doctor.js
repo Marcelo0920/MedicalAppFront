@@ -26,6 +26,8 @@ export const getDoctores = () => async (dispatch) => {
       config
     );
 
+    console.log(res.data);
+
     dispatch({
       type: GET_DOCTORES,
       payload: res.data,

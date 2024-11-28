@@ -55,7 +55,7 @@ function App() {
           }
         />
         <Route
-          path="/revisionresultado"
+          path="/revisionresultado/:id?"
           element={
             <ProtectedRoute>
               <RevisionResult />

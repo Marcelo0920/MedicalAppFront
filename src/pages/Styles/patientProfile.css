@@ -146,6 +146,12 @@
   border-radius: 8px;
   padding: 16px;
   transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.revision-card:visited {
+  text-decoration: none;
+  color: black;
 }
 
 .revision-card:hover {

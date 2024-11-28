@@ -35,14 +35,10 @@ export const loadUser = () => async (dispatch) => {
       config
     );
 
-    console.log("Respuesta de renovación:", res.data);
-
     if (res.data.ok) {
       localStorage.setItem("token", res.data.token);
 
       setAuthToken(res.data.token);
-
-      console.log(res.data);
 
       dispatch({
         type: USER_LOADED,

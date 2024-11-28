@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Header.css";
+import { logout } from "../../actions/auth";
 
-const Header = ({ onMenuClick }) => {
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+const Header = ({ onMenuClick, logout }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -20,6 +24,7 @@ const Header = ({ onMenuClick }) => {
 
   const handleLogout = () => {
     console.log("Logout clicked");
+    logout();
   };
 
   return (
@@ -39,7 +44,10 @@ const Header = ({ onMenuClick }) => {
             role="button"
             tabIndex={0}
           >
-            <img src="/api/placeholder/32/32" alt="User avatar" />
+            <img
+              src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png"
+              alt="User avatar"
+            />
           </div>
           {isDropdownOpen && (
             <div className="user-dropdown">
@@ -75,4 +83,10 @@ const Header = ({ onMenuClick }) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({});
+
+Header.propTypes = {
+  logout: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, { logout })(Header);

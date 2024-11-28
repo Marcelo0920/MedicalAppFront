@@ -1,10 +1,58 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddExamModal.css";
+import { getDoctores } from "../../../actions/doctor";
 
-const AddExamModal = ({ isOpen, onClose, examData }) => {
-  if (examData) {
-    console.log(examData);
-  }
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
+import { postConsulta } from "../../../actions/consulta";
+
+const AddExamModal = ({
+  isOpen,
+  onClose,
+  examData,
+  usuario,
+  getDoctores,
+  doctores,
+  postConsulta,
+}) => {
+  const { id: pacienteId } = useParams();
+
+  const [formData, setFormData] = useState({
+    paciente_id: pacienteId || "",
+    medico_id: examData?.medico_id || "",
+    fecha: examData?.fecha
+      ? new Date(examData.fecha).toISOString().slice(0, 19)
+      : new Date().toISOString().slice(0, 19),
+    sintomas: examData?.sintomas || "",
+    notas: examData?.notas || "",
+  });
+
+  useEffect(() => {
+    if (isOpen) {
+      getDoctores();
+    }
+  }, [isOpen, getDoctores]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formattedData = {
+      ...formData,
+      fecha: new Date(formData.fecha).toISOString().slice(0, 19),
+    };
+    console.log(formData);
+    postConsulta(formData);
+
+    onClose();
+  };
 
   useEffect(() => {
     const handleEscape = (e) => {
@@ -39,69 +87,70 @@ const AddExamModal = ({ isOpen, onClose, examData }) => {
           </button>
         </div>
 
-        <form className="exam-form">
+        <form className="exam-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Examen</label>
+            <label>ID Paciente</label>
             <input
-              type="text"
-              placeholder="Análisis de Sangre"
+              type="number"
+              name="paciente_id"
+              value={formData.paciente_id}
+              onChange={handleChange}
+              placeholder="Ingrese ID del paciente"
               className="form-input"
             />
           </div>
 
           <div className="form-group">
-            <label>Doctor</label>
+            <label>Médico</label>
+            <select
+              name="medico_id"
+              value={formData.medico_id}
+              onChange={handleChange}
+              className="form-input"
+            >
+              <option value="">Seleccione un médico</option>
+              {doctores &&
+                doctores.map((doctor) => (
+                  <option key={doctor.id} value={doctor.id}>
+                    {doctor.nombre} - ID: {doctor.id}
+                  </option>
+                ))}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>Fecha</label>
             <input
-              type="text"
-              placeholder="Jose Kenedy"
+              type="datetime-local"
+              name="fecha"
+              value={formData.fecha}
+              onChange={handleChange}
               className="form-input"
             />
           </div>
 
           <div className="form-group">
-            <label>Hospital</label>
-            <input
-              type="text"
-              placeholder="San Juan de Dios"
+            <label>Síntomas</label>
+            <textarea
+              name="sintomas"
+              value={formData.sintomas}
+              onChange={handleChange}
+              placeholder="Describa los síntomas del paciente"
               className="form-input"
+              rows={3}
             />
           </div>
 
-          <div className="form-row">
-            <div className="form-group half">
-              <label>Fecha</label>
-              <input
-                type="text"
-                placeholder="DD/MM/YY"
-                className="form-input"
-              />
-            </div>
-            <div className="form-group half">
-              <label>Código H.C</label>
-              <input
-                type="text"
-                placeholder="715923541"
-                className="form-input"
-              />
-            </div>
-          </div>
-
           <div className="form-group">
-            <label>Sube fotos de la Historia Clínica</label>
-            <div className="upload-grid">
-              <div className="upload-box">
-                <span className="upload-icon">+</span>
-              </div>
-              <div className="upload-box">
-                <span className="upload-icon">+</span>
-              </div>
-              <div className="upload-box">
-                <span className="upload-icon">+</span>
-              </div>
-              <div className="upload-box">
-                <span className="upload-icon">+</span>
-              </div>
-            </div>
+            <label>Notas</label>
+            <textarea
+              name="notas"
+              value={formData.notas}
+              onChange={handleChange}
+              placeholder="Agregue notas adicionales"
+              className="form-input"
+              rows={3}
+            />
           </div>
 
           <button type="submit" className="submit-button">
@@ -115,4 +164,18 @@ const AddExamModal = ({ isOpen, onClose, examData }) => {
   );
 };
 
-export default AddExamModal;
+const mapStateToProps = (state) => ({
+  usuario: state.auth.usuario,
+  doctores: state.doctor.doctores,
+});
+
+AddExamModal.propTypes = {
+  usuario: PropTypes.object.isRequired,
+  doctores: PropTypes.array,
+  getDoctores: PropTypes.func.isRequired,
+  postConsulta: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, { getDoctores, postConsulta })(
+  AddExamModal
+);

@@ -115,6 +115,8 @@ export const postConsulta = (formData) => async (dispatch) => {
       config
     );
 
+    console.log(res.data);
+
     dispatch({
       type: POST_CONSULTA,
       payload: res.data,

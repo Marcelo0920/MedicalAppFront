@@ -66,7 +66,6 @@ const Revision = ({
       setSelectedFile(file);
       const imageUrl = URL.createObjectURL(file);
       setSelectedImage(imageUrl);
-      console.log(selectedFile);
     }
   };
 

@@ -19,6 +19,7 @@ const PatientProfile = ({
 }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("revisiones");
+  const [diagnosticos, setDiagnosticos] = useState([]);
   const { id } = useParams();
 
   const toggleSidebar = () => {
@@ -26,6 +27,18 @@ const PatientProfile = ({
   };
 
   console.log(paciente);
+
+  useEffect(() => {
+    if (id) {
+      const allDiagnosticos = JSON.parse(
+        localStorage.getItem("diagnosticos") || "[]"
+      );
+      const diagnosticosDelPaciente = allDiagnosticos.filter(
+        (diagnostico) => diagnostico.id_paciente === parseInt(id)
+      );
+      setDiagnosticos(diagnosticosDelPaciente);
+    }
+  }, [id]);
 
   useEffect(() => {
     if (id) {
@@ -45,7 +58,7 @@ const PatientProfile = ({
             <div className="patient-info-card">
               <div className="patient-header">
                 <img
-                  src="/api/placeholder/120/120"
+                  src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png"
                   alt="Patient"
                   className="patient-avatar-profile"
                 />
@@ -100,7 +113,7 @@ const PatientProfile = ({
                   }`}
                   onClick={() => setActiveTab("historia")}
                 >
-                  Historia Clínica
+                  Consultas
                 </button>
               </div>
 
@@ -114,7 +127,7 @@ const PatientProfile = ({
               </div>
 
               {activeTab === "revisiones" ? (
-                <RevisionCard />
+                <RevisionCard diagnosticos={diagnosticos} />
               ) : (
                 <HistoricClinicCardsList />
               )}

@@ -56,7 +56,10 @@ const PatientSelectionModal = ({
                   onClick={() => onSelectPatient(patient)}
                 >
                   <div className="patient-avatar">
-                    <img src="/api/placeholder/32/32" alt={patient.nombre} />
+                    <img
+                      src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png"
+                      alt={patient.nombre}
+                    />
                   </div>
                   <div className="patient-info">
                     <span className="patient-name">{patient.nombre}</span>
