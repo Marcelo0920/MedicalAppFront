@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 import RevisionCard from "../components/Patient/RevisionCard/RevisionCardList";
 import HistoricClinicCardsList from "../components/Patient/HistoricClinic/HistoricClinicCardsList/HistoricClinicCardsList";
 
-import "@pages/styles/PatientProfile.css";
+import "@pages/styles/patientProfile.css";
 
 const PatientProfile = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { iaAnalisis, iaLoading } from "../actions/ia";
-import "@pages/styles/Revision.css";
+import "@pages/styles/revision.css";
 
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
