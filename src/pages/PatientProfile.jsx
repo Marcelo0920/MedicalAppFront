@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 
-import "./Styles/PatientProfile.css";
+import "./styles/PatientProfile.css";
 import RevisionCard from "../components/Patient/RevisionCard/RevisionCardList";
 import HistoricClinicCardsList from "../components/Patient/HistoricClinic/HistoricClinicCardsList/HistoricClinicCardsList";
 

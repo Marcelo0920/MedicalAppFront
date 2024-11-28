@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./styles/Revision.css";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Header from "../components/Header/Header";
 import PatientSelectionModal from "../components/Modals/PatientSelectionModal/PatientSelectionModal";
@@ -7,6 +6,7 @@ import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { iaAnalisis, iaLoading } from "../actions/ia";
+import "./styles/Revision.css";
 
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
